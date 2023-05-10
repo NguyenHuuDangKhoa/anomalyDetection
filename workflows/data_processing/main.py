@@ -66,46 +66,9 @@ def main(arguments_list: List = None):
             output_test_data_path=arguments.output_test_data_path,
             use_healthy_data_only=True)
         logger.info('Save training and testing sets to feather files')
-    elif arguments.approach == 'NBM_RUL':
-        logger.info('Choosing Normal Behaviour Model - Remaining Useful Life Direction')
-        input_data_paths = [*config.get('data_processing_settings').get('input_data_paths').values()]
-        excel_failure_data_paths = [*config.get('data_processing_settings').get('excel_failure_data_paths').values()]
-        csv_failure_data_paths = [*config.get('data_processing_settings').get('csv_failure_data_paths').values()]
-        drop_columns = config.get('data_processing_settings').get('drop_columns')
-        failure_settings = config.get('data_processing_settings').get('failure_settings')
-        nbm_settings = config.get('data_processing_settings').get('nbm_settings')
-        rul_column = config.get('data_processing_settings').get('rul_column')
-        data_split = config.get('data_processing_settings').get('data_split')
-        logger.info('Run processing core')
-        logger.info('Create processor instance')
-        data_processor = processing_nbm_rul.DataProcessorNBM()
-        logger.info('Load all datasets')
-        data_processor._load_data(*input_data_paths)
-        logger.info('Clean all datasets')
-        data_processor._clean_data(dictionary=drop_columns)
-        logger.info('Merge all datasets')
-        data_processor._merge_data()
-        logger.info('Load in excel datasets')
-        data_processor._load_failure_excel(*excel_failure_data_paths)
-        logger.info('Transforming excel datasets')
-        data_processor._transform_failure_excel()
-        logger.info('Load in csv datasets')
-        data_processor._load_failure_csv(*csv_failure_data_paths)
-        logger.info('Combining failure data')
-        data_processor._combine_failure_data(dictionary=failure_settings)
-        logger.info('Remove highly correlated features')
-        data_processor._remove_highly_correlated_features(threshold=0.95)
-        logger.info('Create unhealthy dataset')
-        data_processor._create_unhealthy_data()
-        logger.info('Create NBM dataset')
-        data_processor._create_nbm_data(dictionary=nbm_settings)
-        logger.info('Split data into training and testing sets')
-        data_processor._split_data_train_test(
-            output_train_data_path=arguments.output_train_data_path,
-            output_test_data_path=arguments.output_test_data_path,
-            model_type='nbm',
-            dictionary=data_split)
-        logger.info('Save training and testing sets to feather files')
+    else:
+        #TODO
+        pass
 
 if __name__ == '__main__':
     main()

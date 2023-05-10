@@ -15,10 +15,7 @@ steps_to_run:
     run: false
     arguments:
       local:
-        - --config_path
-        - config.yaml
-        - --input_data_path
-        - ./data/raw_data.parquet
+        - TODO
       azure:
         - TODO
     code:
@@ -33,7 +30,7 @@ steps_to_run:
         - --config_path
         - config_data_processing.yaml
         - --approach
-        - NBM_RUL
+        - one_class_classification
       azure:
         - TODO
     code:
