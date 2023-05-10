@@ -1,0 +1,35 @@
+name: anomaly_detection_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pip==22.3.1
+  - setuptools==65.6.3
+  - python==3.9
+  - cloudpickle==2.2.1
+  - numpy==1.23.5
+  - pandas==1.5.2
+  - psutil==5.8.0
+  - pyyaml==6.0
+  - scikit-learn==1.2.1
+  - pre-commit==3.0.2
+  - structlog==22.1.0
+  - python-dotenv==0.21.1
+  - flake8==6.0.0
+  - conda-build==3.23.3
+  - twine==4.0.2
+  - keyring==23.4.0
+  - ipykernel==6.19.2
+  - notebook==6.5.2
+  - matplotlib==3.6.3
+  - pyspark==3.3.1
+  - vaex==4.16.0
+  - dask==2023.2.0
+
+  - pip:
+      - azureml-sdk
+      - azureml-defaults
+      - azureml-fsspec
+      - azure-storage-blob
+      - mltable
+      - artifacts-keyring
