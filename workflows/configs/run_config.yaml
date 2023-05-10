@@ -67,16 +67,12 @@ steps_to_run:
       local:
         - --config_path
         - config.yaml
-        - --input_X_train_data_file_name
-        - X_train.feather
         - --input_X_test_data_file_name
         - X_test.feather
         - --input_y_test_data_file_name
         - y_test.feather
-        - --input_model_filename
-        - model.pkl
-        - --output_data_file_name
-        - test_predictions.feather
+        - --model_option
+        - one_class_classification
       azure:
         - TODO
     code:

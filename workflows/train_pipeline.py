@@ -9,7 +9,7 @@ from typing import Dict, Text
 
 import structlog
 from data_processing.main import main as data_processing_run
-from data_validation.main import run as data_validation_run
+# from data_validation.main import run as data_validation_run
 from model_training.main import run as model_training_run
 from model_validation.main import run as model_validation_run
 
@@ -32,14 +32,14 @@ def local_run(run_config: Dict, experiment_output_path: Text):
     local_pipeline.run(run_config=run_config, experiment_output_path=experiment_output_path)
 
 
-def azure_run(run_config: Dict, experiment_output_path: Text):
-    """
-    This method runs a train pipeline on azure compute cluster
+# def azure_run(run_config: Dict, experiment_output_path: Text):
+#     """
+#     This method runs a train pipeline on azure compute cluster
 
-    :param run_config: Configuration for running the scripts
-    :param experiment_output_path: String of path to the experiment log directory (should not have a slash / at the end)
-    """
-    azure_pipeline.run(run_config=run_config, experiment_output_path=experiment_output_path)
+#     :param run_config: Configuration for running the scripts
+#     :param experiment_output_path: String of path to the experiment log directory (should not have a slash / at the end)
+#     """
+#     azure_pipeline.run(run_config=run_config, experiment_output_path=experiment_output_path)
 
 
 if __name__ == '__main__':

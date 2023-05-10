@@ -27,8 +27,9 @@ def parse_arguments(arguments_list: List) -> Namespace:
     parser.add_argument('--output_train_data_path', type=Path, help='output train data path')
     parser.add_argument('--output_test_data_path', type=Path, help='output test data path')
     parser.add_argument('--config_path', type=str, help='Path to data processing config file')
+    parser.add_argument('--output_hold_data_path', type=Path, help='output saved datasets')
     parser.add_argument('--approach', type=str,
-                        choices=['one_class_classification', 'NBM_RUL'],
+                        choices=['one_class_classification', 'other_models'],
                         help='General direction to process and train data')
     return parser.parse_args(arguments_list)
 
@@ -66,9 +67,10 @@ def main(arguments_list: List = None):
             output_test_data_path=arguments.output_test_data_path,
             use_healthy_data_only=True)
         logger.info('Save training and testing sets to feather files')
-    else:
+    elif arguments.approach == 'other_models':
         #TODO
         pass
+
 
 if __name__ == '__main__':
     main()

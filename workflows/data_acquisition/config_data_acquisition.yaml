@@ -27,3 +27,8 @@ data_acquisition_settings:
     uri_type: uri_folder
     datastore_uri: uri_tur
     blob_name: tur_blob
+
+  All_Sites_Major_Component_Tracking__xlsx:
+    uri_type: uri_file
+    datastore_uri: uri_asmct
+    blob_name: asmct_blob
