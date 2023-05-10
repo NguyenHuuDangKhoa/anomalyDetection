@@ -1,0 +1,90 @@
+model_name: "model_name"
+compute: "local" # azure or local
+output_directory: "./outputs"
+
+train_data_pipeline_name: "Train_Data"
+test_data_pipeline_name: "Test_Data"
+model_data_pipeline_name: "Trained_Model"
+model_validation_data_pipeline_name: "Validation_Results"
+
+source_directory_root: "workflows"
+
+steps_to_run:
+  data_validation:
+    name: "Validate_Data"
+    run: false
+    arguments:
+      local:
+        - --config_path
+        - config.yaml
+        - --input_data_path
+        - ./data/raw_data.parquet
+      azure:
+        - TODO
+    code:
+      source_path: "data_validation"
+      script_name: "main.py"
+
+  data_processing:
+    name: "Process_Data"
+    run: false
+    arguments:
+      local:
+        - --config_path
+        - config_data_processing.yaml
+        - --approach
+        - NBM_RUL
+      azure:
+        - TODO
+    code:
+      source_path: "data_processing"
+      script_name: "main.py"
+
+  model_training:
+    name: "Train_Model"
+    run: false
+    arguments:
+      local:
+        - --config_path
+        - config.yaml
+        - --input_X_train_data_file_name
+        - X_train.feather
+        - --input_y_train_data_file_name
+        - y_train.feather
+        - --input_X_test_data_file_name
+        - X_test.feather
+        - --input_y_test_data_file_name
+        - y_test.feather
+        - --model_option
+        - isolation_forest
+      azure:
+        - TODO
+    code:
+      source_path: "model_training"
+      script_name: "main.py"
+
+  model_validation:
+    name: "Validate_Model"
+    run: true
+    arguments:
+      local:
+        - --config_path
+        - config.yaml
+        - --input_X_train_data_file_name
+        - X_train.feather
+        - --input_X_test_data_file_name
+        - X_test.feather
+        - --input_y_test_data_file_name
+        - y_test.feather
+        - --input_model_filename
+        - model.pkl
+        - --output_data_file_name
+        - test_predictions.feather
+      azure:
+        - TODO
+    code:
+      source_path: "model_validation"
+      script_name: "main.py"
+
+  model_registration:
+    run: false

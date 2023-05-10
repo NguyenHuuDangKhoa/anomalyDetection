@@ -1,0 +1,29 @@
+data_acquisition_settings:
+  general_settings:
+    connect_str: connect_str
+    container_name: container_name
+  
+  gear_failure__csv:
+    uri_type: uri_file
+    datastore_uri: uri_gear_failure_log
+    blob_name: gear_failure_blob
+
+  generator_failure__csv:
+    uri_type: uri_file
+    datastore_uri: uri_generator_failure_log
+    blob_name: generator_failure_blob
+
+  grd_data__feather:
+    uri_type: uri_folder
+    datastore_uri: uri_grd
+    blob_name: grd_blob
+  
+  tmp_data__feather:
+    uri_type: uri_folder
+    datastore_uri: uri_tmp
+    blob_name: tmp_blob
+
+  tur_data__feather:
+    uri_type: uri_folder
+    datastore_uri: uri_tur
+    blob_name: tur_blob
