@@ -54,6 +54,11 @@ def run(run_config: Dict, experiment_output_path: Text):
     )
     make_directory(test_data_config)
 
+    hold_data_config = output_file_dataset_destination.format(
+        output_name=run_config.get('hold_data_pipeline_name'),
+    )
+    make_directory(hold_data_config)
+
     # Define Data processing Step
     logger.info('In local_pipeline.py')
     step_name = 'data_processing'
@@ -63,6 +68,7 @@ def run(run_config: Dict, experiment_output_path: Text):
         step_arguments = [
             '--output_train_data_path', train_data_config,
             '--output_test_data_path', test_data_config,
+            '--output_hold_data_path', hold_data_config,
             *step_configs.get('arguments').get('local'),  # Packing the arguments to a List
         ]
         step_run_reference.get(step_name)(arguments_list=step_arguments)
@@ -84,6 +90,7 @@ def run(run_config: Dict, experiment_output_path: Text):
         step_arguments = [
             '--input_train_data_path', train_data_config,
             '--input_test_data_path', test_data_config,
+            '--input_hold_data_path', hold_data_config,
             '--output_model_path', models_data_config,
             *step_configs.get('arguments').get('local'),
         ]
@@ -102,7 +109,9 @@ def run(run_config: Dict, experiment_output_path: Text):
     if step_configs.get('run'):
         logger.info(f'Running step: {step_name}')
         step_arguments = [
+            '--input_train_data_path', train_data_config,
             '--input_data_path', test_data_config,
+            '--input_test_data_path', test_data_config,
             '--input_model_path', models_data_config,
             '--output_data_path', model_validation_data_config,
             *step_configs.get('arguments').get('local'),
